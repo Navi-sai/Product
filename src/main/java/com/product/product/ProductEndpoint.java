@@ -17,7 +17,7 @@ public class ProductEndpoint {
 		ProductResponse response = new ProductResponse();
 		response.setName(request.getName().toUpperCase());
 		response.setColor(request.getColor().toUpperCase());
-		System.out.println("Program Completed - 10");
+		System.out.println("Program Completed - 20");
 
 		return response;
 	}
