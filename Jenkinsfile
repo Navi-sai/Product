@@ -25,6 +25,18 @@ pipeline {
                 echo 'Build completed successfully!'
             }
         }
+
+        stage('Deploy Application') {
+            steps {
+                echo 'Deploying Spring Boot Application...'
+                bat '''
+                    cd target
+                    cmd /c start "" java -jar product-0.0.1-SNAPSHOT.jar
+                    '''
+                echo 'Spring Boot Application started successfully on port 8080!'
+                }
+}
+
     }
 
     post {
