@@ -31,7 +31,7 @@ pipeline {
                 echo 'Deploying Spring Boot Application...'
                 bat '''
                     cd target
-                    java -jar product-0.0.1-SNAPSHOT.jar --server.port=8081
+                    start java -jar product-0.0.1-SNAPSHOT.jar --server.port=8081
                     '''
                 echo 'Spring Boot Application started successfully on port 8081!'
                 }
