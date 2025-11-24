@@ -1,35 +1,30 @@
-pipeline {
+pipeline{
     agent any
 
-    tools {
-        maven 'Maven-3.9.11'
-    }
-
     stages {
-        stage('Checkout Code') {
+
+        stage('Checkout') {
             steps {
-                echo 'Cloning source code from GitHub...'
-                git branch: 'main', url: 'https://github.com/Navi-sai/Product.git'
+                checkout scm
+                echo 'Checking out code...'
             }
         }
-
-        stage('Build with Maven') {
+        stage('Build') {
             steps {
-                echo 'Building the project using Maven...'
-                bat 'mvn clean install'
+                bat 'mvn clean package'
+                echo 'Building...'
             }
         }
-
-        stage('Post Build') {
-            steps {
-                echo 'Build completed successfully!'
+        post {
+            success {
+                echo 'Build succeeded!'
             }
+            failure {
+                echo 'Build failed!'
+            }
+
         }
     }
 
-    post {
-        failure {
-            echo 'Build failed. Please check the logs.'
-        }
-    }
+
 }
