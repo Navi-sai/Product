@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                // Checkout code from Git
+                checkout scm
+                echo 'Code checked out...'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Run Maven to build the project and create a JAR
+                bat 'mvn clean package'
+                echo 'JAR created successfully.'
+            }
+        }
+
+    }
+}
